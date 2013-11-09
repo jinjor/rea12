@@ -10,8 +10,26 @@ let log s =
   print_string s;
   print_newline()
 
-let make_js s =
-  string_of_int s
+let rec js_of_statements ast =
+  match ast with
+      Ast.EndOfStatements -> ""
+    | Ast.Statements (head, tail) ->
+        match tail with
+            Ast.EndOfStatements -> (js_of_expr head)
+          | _ -> (js_of_expr head) ^ "\n" ^ (js_of_statements tail)
+
+and js_of_expr ast =
+  match ast with
+        Ast.IntLiteral i -> string_of_int i
+      | Ast.StringLiteral s -> "'" ^ s ^ "'"
+      | Ast.Add (e1, e2) -> (js_of_expr e1) ^ "+" ^ (js_of_expr e2)
+      | Ast.Substract (e1, e2) -> (js_of_expr e1) ^ "-" ^ (js_of_expr e2)
+      | Ast.Multiply (e1, e2) -> (js_of_expr e1) ^ "*" ^ (js_of_expr e2)
+      | Ast.Divide (e1, e2) -> (js_of_expr e1) ^ "/" ^ (js_of_expr e2)
+      | Ast.UMinus (e) -> "-" ^ (js_of_expr e)
+
+
+
 
 exception Unknown
 let write_file file_name s : unit =
@@ -34,7 +52,7 @@ let _ =
     let lexbuf = Lexing.from_string source in
     log "start!";
     let result = Parser.main Lexer.token lexbuf in
-    let output_str = make_js result in
+    let output_str = js_of_statements result in
     log output_str;
     write_file output_file_name output_str;
     log "end!";

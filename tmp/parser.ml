@@ -1,65 +1,77 @@
 type token =
   | INT of (int)
+  | STRING of (string)
   | PLUS
   | MINUS
   | TIMES
   | DIV
   | LPAREN
   | RPAREN
+  | LBRACKET
+  | RBRACKET
+  | QUOTE
   | EOL
   | EOF
 
 open Parsing;;
 let _ = parse_error;;
 let yytransl_const = [|
-  258 (* PLUS *);
-  259 (* MINUS *);
-  260 (* TIMES *);
-  261 (* DIV *);
-  262 (* LPAREN *);
-  263 (* RPAREN *);
-  264 (* EOL *);
+  259 (* PLUS *);
+  260 (* MINUS *);
+  261 (* TIMES *);
+  262 (* DIV *);
+  263 (* LPAREN *);
+  264 (* RPAREN *);
+  265 (* LBRACKET *);
+  266 (* RBRACKET *);
+  267 (* QUOTE *);
+  268 (* EOL *);
     0 (* EOF *);
     0|]
 
 let yytransl_block = [|
   257 (* INT *);
+  258 (* STRING *);
     0|]
 
 let yylhs = "\255\255\
-\001\000\002\000\002\000\002\000\002\000\002\000\002\000\002\000\
-\000\000"
+\001\000\002\000\002\000\003\000\003\000\003\000\003\000\003\000\
+\003\000\003\000\003\000\000\000"
 
 let yylen = "\002\000\
-\002\000\001\000\003\000\003\000\003\000\003\000\003\000\002\000\
-\002\000"
+\002\000\001\000\003\000\001\000\003\000\003\000\003\000\003\000\
+\003\000\003\000\002\000\002\000"
 
 let yydefred = "\000\000\
-\000\000\000\000\002\000\000\000\000\000\009\000\000\000\008\000\
-\000\000\000\000\000\000\000\000\000\000\001\000\003\000\000\000\
-\000\000\006\000\007\000"
+\000\000\000\000\004\000\000\000\000\000\000\000\012\000\000\000\
+\000\000\011\000\000\000\000\000\001\000\000\000\000\000\000\000\
+\000\000\000\000\006\000\005\000\000\000\000\000\009\000\010\000\
+\003\000"
 
 let yydgoto = "\002\000\
-\006\000\007\000"
+\007\000\008\000\009\000"
 
-let yysindex = "\007\000\
-\255\254\000\000\000\000\255\254\255\254\000\000\009\000\000\000\
-\014\255\255\254\255\254\255\254\255\254\000\000\000\000\006\255\
-\006\255\000\000\000\000"
+let yysindex = "\255\255\
+\001\255\000\000\000\000\001\255\001\255\003\255\000\000\011\000\
+\017\255\000\000\022\255\002\255\000\000\001\255\001\255\001\255\
+\001\255\001\255\000\000\000\000\004\255\004\255\000\000\000\000\
+\000\000"
 
 let yyrindex = "\000\000\
 \000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\
-\000\000\000\000\000\000\000\000\000\000\000\000\000\000\001\000\
-\003\000\000\000\000\000"
+\014\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\
+\000\000\000\000\000\000\000\000\001\000\003\000\000\000\000\000\
+\000\000"
 
 let yygindex = "\000\000\
-\000\000\002\000"
+\000\000\253\255\002\000"
 
-let yytablesize = 270
-let yytable = "\003\000\
-\004\000\004\000\005\000\000\000\005\000\008\000\009\000\001\000\
-\014\000\012\000\013\000\016\000\017\000\018\000\019\000\010\000\
-\011\000\012\000\013\000\000\000\015\000\000\000\000\000\000\000\
+let yytablesize = 271
+let yytable = "\001\000\
+\007\000\003\000\008\000\012\000\004\000\010\000\011\000\005\000\
+\016\000\017\000\013\000\006\000\020\000\002\000\025\000\021\000\
+\022\000\023\000\024\000\014\000\015\000\016\000\017\000\000\000\
+\014\000\015\000\016\000\017\000\018\000\019\000\000\000\000\000\
 \000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\
 \000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\
 \000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\
@@ -88,14 +100,14 @@ let yytable = "\003\000\
 \000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\
 \000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\
 \000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\
-\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\
-\000\000\000\000\004\000\004\000\005\000\005\000\000\000\004\000\
-\000\000\005\000\010\000\011\000\012\000\013\000"
+\000\000\000\000\000\000\007\000\007\000\008\000\008\000\000\000\
+\007\000\000\000\008\000\000\000\007\000\000\000\008\000"
 
-let yycheck = "\001\001\
-\000\000\003\001\000\000\255\255\006\001\004\000\005\000\001\000\
-\000\000\004\001\005\001\010\000\011\000\012\000\013\000\002\001\
-\003\001\004\001\005\001\255\255\007\001\255\255\255\255\255\255\
+let yycheck = "\001\000\
+\000\000\001\001\000\000\001\001\004\001\004\000\005\000\007\001\
+\005\001\006\001\000\000\011\001\011\001\000\000\018\000\014\000\
+\015\000\016\000\017\000\003\001\004\001\005\001\006\001\255\255\
+\003\001\004\001\005\001\006\001\012\001\008\001\255\255\255\255\
 \255\255\255\255\255\255\255\255\255\255\255\255\255\255\255\255\
 \255\255\255\255\255\255\255\255\255\255\255\255\255\255\255\255\
 \255\255\255\255\255\255\255\255\255\255\255\255\255\255\255\255\
@@ -124,9 +136,8 @@ let yycheck = "\001\001\
 \255\255\255\255\255\255\255\255\255\255\255\255\255\255\255\255\
 \255\255\255\255\255\255\255\255\255\255\255\255\255\255\255\255\
 \255\255\255\255\255\255\255\255\255\255\255\255\255\255\255\255\
-\255\255\255\255\255\255\255\255\255\255\255\255\255\255\255\255\
-\255\255\255\255\002\001\003\001\002\001\003\001\255\255\007\001\
-\255\255\007\001\002\001\003\001\004\001\005\001"
+\255\255\255\255\255\255\003\001\004\001\003\001\004\001\255\255\
+\008\001\255\255\008\001\255\255\012\001\255\255\012\001"
 
 let yynames_const = "\
   PLUS\000\
@@ -135,75 +146,101 @@ let yynames_const = "\
   DIV\000\
   LPAREN\000\
   RPAREN\000\
+  LBRACKET\000\
+  RBRACKET\000\
+  QUOTE\000\
   EOL\000\
   EOF\000\
   "
 
 let yynames_block = "\
   INT\000\
+  STRING\000\
   "
 
 let yyact = [|
   (fun _ -> failwith "parser")
 ; (fun __caml_parser_env ->
-    let _1 = (Parsing.peek_val __caml_parser_env 1 : 'expr) in
+    let _1 = (Parsing.peek_val __caml_parser_env 1 : 'statements) in
     Obj.repr(
-# 13 "src/parser.mly"
-                            ( _1 )
-# 154 "tmp/parser.ml"
-               : int))
+# 16 "src/parser.mly"
+                                  ( _1 )
+# 169 "tmp/parser.ml"
+               : Ast.program_ast))
+; (fun __caml_parser_env ->
+    let _1 = (Parsing.peek_val __caml_parser_env 0 : 'expr) in
+    Obj.repr(
+# 19 "src/parser.mly"
+                             ( Ast.Statements (_1, Ast.EndOfStatements) )
+# 176 "tmp/parser.ml"
+               : 'statements))
+; (fun __caml_parser_env ->
+    let _1 = (Parsing.peek_val __caml_parser_env 2 : 'expr) in
+    let _3 = (Parsing.peek_val __caml_parser_env 0 : 'statements) in
+    Obj.repr(
+# 20 "src/parser.mly"
+                             ( Ast.Statements (_1, _3) )
+# 184 "tmp/parser.ml"
+               : 'statements))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 0 : int) in
     Obj.repr(
-# 16 "src/parser.mly"
-                            ( _1 )
-# 161 "tmp/parser.ml"
+# 24 "src/parser.mly"
+                            ( Ast.IntLiteral _1 )
+# 191 "tmp/parser.ml"
+               : 'expr))
+; (fun __caml_parser_env ->
+    let _2 = (Parsing.peek_val __caml_parser_env 1 : int) in
+    Obj.repr(
+# 25 "src/parser.mly"
+                                 ( Ast.StringLiteral (string_of_int _2) )
+# 198 "tmp/parser.ml"
                : 'expr))
 ; (fun __caml_parser_env ->
     let _2 = (Parsing.peek_val __caml_parser_env 1 : 'expr) in
     Obj.repr(
-# 17 "src/parser.mly"
+# 26 "src/parser.mly"
                             ( _2 )
-# 168 "tmp/parser.ml"
+# 205 "tmp/parser.ml"
                : 'expr))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 2 : 'expr) in
     let _3 = (Parsing.peek_val __caml_parser_env 0 : 'expr) in
     Obj.repr(
-# 18 "src/parser.mly"
-                            ( _1 + _3 )
-# 176 "tmp/parser.ml"
+# 27 "src/parser.mly"
+                            ( Ast.Add (_1, _3) )
+# 213 "tmp/parser.ml"
                : 'expr))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 2 : 'expr) in
     let _3 = (Parsing.peek_val __caml_parser_env 0 : 'expr) in
     Obj.repr(
-# 19 "src/parser.mly"
-                            ( _1 - _3 )
-# 184 "tmp/parser.ml"
+# 28 "src/parser.mly"
+                            ( Ast.Substract (_1, _3) )
+# 221 "tmp/parser.ml"
                : 'expr))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 2 : 'expr) in
     let _3 = (Parsing.peek_val __caml_parser_env 0 : 'expr) in
     Obj.repr(
-# 20 "src/parser.mly"
-                            ( _1 * _3 )
-# 192 "tmp/parser.ml"
+# 29 "src/parser.mly"
+                            ( Ast.Multiply (_1, _3) )
+# 229 "tmp/parser.ml"
                : 'expr))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 2 : 'expr) in
     let _3 = (Parsing.peek_val __caml_parser_env 0 : 'expr) in
     Obj.repr(
-# 21 "src/parser.mly"
-                            ( _1 / _3 )
-# 200 "tmp/parser.ml"
+# 30 "src/parser.mly"
+                            ( Ast.Divide (_1, _3) )
+# 237 "tmp/parser.ml"
                : 'expr))
 ; (fun __caml_parser_env ->
     let _2 = (Parsing.peek_val __caml_parser_env 0 : 'expr) in
     Obj.repr(
-# 22 "src/parser.mly"
-                            ( - _2 )
-# 207 "tmp/parser.ml"
+# 31 "src/parser.mly"
+                            ( Ast.UMinus _2 )
+# 244 "tmp/parser.ml"
                : 'expr))
 (* Entry main *)
 ; (fun __caml_parser_env -> raise (Parsing.YYexit (Parsing.peek_val __caml_parser_env 0)))
@@ -226,4 +263,4 @@ let yytables =
     Parsing.names_const=yynames_const;
     Parsing.names_block=yynames_block }
 let main (lexfun : Lexing.lexbuf -> token) (lexbuf : Lexing.lexbuf) =
-   (Parsing.yyparse yytables 1 lexfun lexbuf : int)
+   (Parsing.yyparse yytables 1 lexfun lexbuf : Ast.program_ast)

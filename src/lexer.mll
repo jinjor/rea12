@@ -12,4 +12,7 @@ rule token = parse
   | '/'            { DIV }
   | '('            { LPAREN }
   | ')'            { RPAREN }
+  | '{'            { LBRACKET }
+  | '}'            { RBRACKET }
+  | '\''           { QUOTE }
   | eof            { EOF }
