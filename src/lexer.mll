@@ -12,4 +12,4 @@ rule token = parse
   | '/'            { DIV }
   | '('            { LPAREN }
   | ')'            { RPAREN }
-  | eof            { raise Eof }
+  | eof            { EOF }

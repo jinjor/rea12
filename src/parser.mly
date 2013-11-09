@@ -2,7 +2,7 @@
 %token <int> INT
 %token PLUS MINUS TIMES DIV
 %token LPAREN RPAREN
-%token EOL
+%token EOL EOF
 %left PLUS MINUS        /* lowest precedence */
 %left TIMES DIV         /* medium precedence */
 %nonassoc UMINUS        /* highest precedence */
@@ -10,7 +10,7 @@
 %type <int> main
 %%
 main:
-    expr EOL                { $1 }
+    expr EOF                { $1 }
 ;
 expr:
     INT                     { $1 }

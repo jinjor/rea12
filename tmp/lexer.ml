@@ -154,7 +154,7 @@ let
 
   | 9 ->
 # 15 "src/lexer.mll"
-                   ( raise Eof )
+                   ( EOF )
 # 159 "tmp/lexer.ml"
 
   | __ocaml_lex_state -> lexbuf.Lexing.refill_buff lexbuf; __ocaml_lex_token_rec lexbuf __ocaml_lex_state

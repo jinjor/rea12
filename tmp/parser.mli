@@ -7,6 +7,7 @@ type token =
   | LPAREN
   | RPAREN
   | EOL
+  | EOF
 
 val main :
   (Lexing.lexbuf  -> token) -> Lexing.lexbuf -> int
