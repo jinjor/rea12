@@ -1,6 +1,8 @@
-sample/
-bin/
-tmp/
+/bin/*.*
+!/bin/
+/tmp/*.*
+!/tmp/
+
 
 .DS_Store
 *.annot
