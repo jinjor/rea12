@@ -22,8 +22,8 @@ and js_of_pattern ast = match ast with
 
 and js_of_lambda ast = match ast with
       Ast.Lambda (pattern, lambda) ->
-        "function(" ^ (js_of_pattern pattern) ^ "){\n"
-        ^ (js_of_lambda lambda) ^ "\n}"
+        "function(" ^ (js_of_pattern pattern) ^ "){\nreturn "
+        ^ (js_of_lambda lambda) ^ ";\n}"
     | Ast.EndOfLambda func -> js_of_function func
 
 and js_of_statement ast = match ast with
