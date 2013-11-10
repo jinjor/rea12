@@ -1,7 +1,7 @@
 type expression_ast =
     StringLiteral of string
   | IntLiteral of int
-  | FuncExpression of function_ast
+  | LambdaExpression of lambda_ast
   | IdExpression of id_ast
 
 and function_ast =

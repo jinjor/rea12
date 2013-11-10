@@ -37,10 +37,10 @@ func:
   | expr func               { Ast.Function ($1, $2) }
 ;
 expr:
-    INT                     { Ast.IntLiteral $1 }
+  | INT                     { Ast.IntLiteral $1 }
   | STRING                  { Ast.StringLiteral $1 }
   | id                      { Ast.IdExpression $1 }
-  | LPAREN func RPAREN      { Ast.FuncExpression $2 }
+  | LPAREN lambda RPAREN    { Ast.LambdaExpression $2 }
 ;
 id:
   ID                        { Ast.Id $1 }

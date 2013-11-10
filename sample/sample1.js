@@ -1,5 +1,9 @@
 'ahoge1'(3)(4);
-a=(234);
-b=function(a){
-return (345);
+a=function(a){
+return 234;
 };
+b=function(b){
+return a(1);
+}(function(a){
+return 345;
+});

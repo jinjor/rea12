@@ -29,19 +29,22 @@ and js_of_lambda ast = match ast with
 and js_of_statement ast = match ast with
       Ast.DefStatement (Ast.Def (pattern, lambda)) ->
         (js_of_pattern pattern) ^ "=" ^ (js_of_lambda lambda)
-    | Ast.FuncStatement (Ast.Function (head, tail)) ->
-        (js_of_expr head) ^ (js_of_function tail)
+    | Ast.FuncStatement (func) -> js_of_function func
     | Ast.FuncStatement (Ast.EndOfFunction) -> ""
 
 and js_of_function ast = match ast with
-      Ast.Function (head, tail) -> "(" ^ (js_of_expr head) ^ ")" ^ (js_of_function tail)
+      Ast.Function (head, tail) -> (js_of_expr head) ^ (js_of_function_ tail)
+    | Ast.EndOfFunction -> ""
+
+and js_of_function_ ast = match ast with
+      Ast.Function (head, tail) -> "(" ^ (js_of_expr head) ^ ")" ^ (js_of_function_ tail)
     | Ast.EndOfFunction -> ""
 
 and js_of_expr ast = match ast with
         Ast.IntLiteral i -> string_of_int i
       | Ast.StringLiteral s -> "'" ^ s ^ "'"
-      | Ast.FuncExpression expr -> "(" ^ js_of_function expr ^ ")"
       | Ast.IdExpression (Ast.Id id) -> id
+      | Ast.LambdaExpression lambda -> js_of_lambda lambda
 
 exception Unknown
 let write_file file_name s : unit =
