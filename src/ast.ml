@@ -1,14 +1,32 @@
 type expression_ast =
     StringLiteral of string
   | IntLiteral of int
-  | Add of expression_ast * expression_ast
-  | Substract of expression_ast * expression_ast
-  | Multiply of expression_ast * expression_ast
-  | Divide of expression_ast * expression_ast
-  | UMinus of expression_ast
+  | FuncExpression of function_ast
+  | IdExpression of id_ast
 
-type statements_ast =
-    Statements of expression_ast * statements_ast
+and function_ast =
+    Function of expression_ast * function_ast
+  | EndOfFunction
+
+and id_ast =
+    Id of string
+
+and pattern_ast =
+    IdPattern of id_ast
+
+and lambda_ast =
+    Lambda of pattern_ast * lambda_ast
+  | EndOfLambda of function_ast
+
+and def_ast =
+    Def of pattern_ast * lambda_ast
+
+and statement_ast =
+    FuncStatement of function_ast
+  | DefStatement of def_ast
+
+and statements_ast =
+    Statements of statement_ast * statements_ast
   | EndOfStatements
 
-type program_ast = statements_ast
+and program_ast = statements_ast

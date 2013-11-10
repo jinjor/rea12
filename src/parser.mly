@@ -1,32 +1,49 @@
 %token <int> INT
 %token <string> STRING
-%token PLUS MINUS TIMES DIV
+%token <string> ID
+%token EQ
+%token RARROW
 %token LPAREN RPAREN
 %token LBRACKET RBRACKET
 %token QUOTE
 %token EOL EOF
 %left LINESEP
-%left PLUS MINUS
-%left TIMES DIV
-%nonassoc UMINUS
 %start main
 %type <Ast.program_ast> main
 %%
 main:
-    statements EOF                { $1 }
+    statements EOF          { $1 }
+;
+statement:
+    func                    { Ast.FuncStatement ($1) }
+  | def                     { Ast.DefStatement ($1) }
 ;
 statements:
-    expr                     { Ast.Statements ($1, Ast.EndOfStatements) }
-  | expr EOL statements      { Ast.Statements ($1, $3) }
+    statement                { Ast.Statements ($1, Ast.EndOfStatements) }
+  | statement EOL statements { Ast.Statements ($1, $3) }
 ;
-
+pattern:
+    id                      { Ast.IdPattern $1 }
+;
+lambda:
+    func                    { Ast.EndOfLambda ($1) }
+  | pattern RARROW lambda   { Ast.Lambda ($1, $3) }
+;
+def:
+    pattern EQ lambda       { Ast.Def ($1, $3) }
+;
+func:
+    expr                    { Ast.Function ($1, Ast.EndOfFunction) }
+  | expr func               { Ast.Function ($1, $2) }
+;
 expr:
     INT                     { Ast.IntLiteral $1 }
-  | QUOTE INT QUOTE %prec STRING { Ast.StringLiteral (string_of_int $2) }
-  | LPAREN expr RPAREN      { $2 }
-  | expr PLUS expr          { Ast.Add ($1, $3) }
-  | expr MINUS expr         { Ast.Substract ($1, $3) }
-  | expr TIMES expr         { Ast.Multiply ($1, $3) }
-  | expr DIV expr           { Ast.Divide ($1, $3) }
-  | MINUS expr %prec UMINUS { Ast.UMinus $2 }
+  | STRING                  { Ast.StringLiteral $1 }
+  | id                      { Ast.IdExpression $1 }
+  | LPAREN func RPAREN      { Ast.FuncExpression $2 }
 ;
+id:
+  ID                        { Ast.Id $1 }
+;
+
+

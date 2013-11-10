@@ -10,26 +10,36 @@ let log s =
   print_string s;
   print_newline()
 
-let rec js_of_statements ast =
-  match ast with
+let rec js_of_statements ast = match ast with
       Ast.EndOfStatements -> ""
     | Ast.Statements (head, tail) ->
         match tail with
-            Ast.EndOfStatements -> (js_of_expr head)
-          | _ -> (js_of_expr head) ^ "\n" ^ (js_of_statements tail)
+            Ast.EndOfStatements -> (js_of_statement head)
+          | _ -> (js_of_statement head) ^ ";\n" ^ (js_of_statements tail)
 
-and js_of_expr ast =
-  match ast with
+and js_of_pattern ast = match ast with
+      Ast.IdPattern (Ast.Id id) -> id
+
+and js_of_lambda ast = match ast with
+      Ast.Lambda (pattern, lambda) -> "function(){\n" ^ (js_of_lambda lambda) ^ "\n}"
+    | Ast.EndOfLambda func -> js_of_function func
+
+and js_of_statement ast = match ast with
+      Ast.DefStatement (Ast.Def (pattern, lambda)) ->
+        (js_of_pattern pattern) ^ "=" ^ (js_of_lambda lambda)
+    | Ast.FuncStatement (Ast.Function (head, tail)) ->
+        (js_of_expr head) ^ (js_of_function tail)
+    | Ast.FuncStatement (Ast.EndOfFunction) -> ""
+
+and js_of_function ast = match ast with
+      Ast.Function (head, tail) -> "(" ^ (js_of_expr head) ^ ")" ^ (js_of_function tail)
+    | Ast.EndOfFunction -> ""
+
+and js_of_expr ast = match ast with
         Ast.IntLiteral i -> string_of_int i
       | Ast.StringLiteral s -> "'" ^ s ^ "'"
-      | Ast.Add (e1, e2) -> (js_of_expr e1) ^ "+" ^ (js_of_expr e2)
-      | Ast.Substract (e1, e2) -> (js_of_expr e1) ^ "-" ^ (js_of_expr e2)
-      | Ast.Multiply (e1, e2) -> (js_of_expr e1) ^ "*" ^ (js_of_expr e2)
-      | Ast.Divide (e1, e2) -> (js_of_expr e1) ^ "/" ^ (js_of_expr e2)
-      | Ast.UMinus (e) -> "-" ^ (js_of_expr e)
-
-
-
+      | Ast.FuncExpression expr -> "(" ^ js_of_function expr ^ ")"
+      | Ast.IdExpression (Ast.Id id) -> id
 
 exception Unknown
 let write_file file_name s : unit =
@@ -57,7 +67,8 @@ let _ =
     write_file output_file_name output_str;
     log "end!";
     exit 0
-  with _ ->
+  with e ->
+    log (Printexc.to_string e);
     log "error!";
     exit 1
 

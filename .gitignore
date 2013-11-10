@@ -1,7 +1,5 @@
-/bin/*.*
-!/bin/
-/tmp/*.*
-!/tmp/
+/bin
+/tmp
 
 
 .DS_Store
