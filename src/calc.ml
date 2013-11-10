@@ -14,14 +14,16 @@ let rec js_of_statements ast = match ast with
       Ast.EndOfStatements -> ""
     | Ast.Statements (head, tail) ->
         match tail with
-            Ast.EndOfStatements -> (js_of_statement head)
+            Ast.EndOfStatements -> (js_of_statement head) ^ ";"
           | _ -> (js_of_statement head) ^ ";\n" ^ (js_of_statements tail)
 
 and js_of_pattern ast = match ast with
       Ast.IdPattern (Ast.Id id) -> id
 
 and js_of_lambda ast = match ast with
-      Ast.Lambda (pattern, lambda) -> "function(){\n" ^ (js_of_lambda lambda) ^ "\n}"
+      Ast.Lambda (pattern, lambda) ->
+        "function(" ^ (js_of_pattern pattern) ^ "){\n"
+        ^ (js_of_lambda lambda) ^ "\n}"
     | Ast.EndOfLambda func -> js_of_function func
 
 and js_of_statement ast = match ast with
