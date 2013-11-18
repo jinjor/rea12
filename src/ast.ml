@@ -29,6 +29,6 @@ and statement_ast =
 
 and statements_ast =
     Statements of statement_ast * statements_ast
-  | EndOfStatements
+  | LastStatement of expression_ast
 
 and program_ast = statements_ast

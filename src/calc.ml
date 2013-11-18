@@ -14,13 +14,12 @@ let log s =
 let indent i = String.make i '\t'
 
 let rec js_of_statements ast i = match ast with
-      Ast.EndOfStatements -> ""
+      Ast.LastStatement expr -> (indent i) ^ "return " ^ js_of_expr expr i ^ ";"
     | Ast.Statements (head, tail) ->
-        match tail with
-            Ast.EndOfStatements ->
-              (js_of_statement head i) ^ ";"
-          | _ -> (js_of_statement head i) ^ ";\n"
+          (js_of_statement head i) ^ ";\n"
               ^ (js_of_statements tail i)
+
+
 
 and js_of_statement ast i = match ast with
       Ast.DefStatement (Ast.Def (pattern, lambda)) ->

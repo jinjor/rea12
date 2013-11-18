@@ -17,8 +17,7 @@
         	},
             "name": "Rea12",
             "working_dir": "${project_path}",
-            "cmd": ["./build.sh"],
-            "shell": "bash",
+            "cmd": ["make"],
 		    "file_regex": "\\.(mll|mll|ml)$"
         }
     ]

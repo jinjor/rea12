@@ -10,6 +10,8 @@
 %start main
 %type <Ast.program_ast> main
 %%
+
+
 main:
     statements EOF          { $1 }
 ;
@@ -19,7 +21,7 @@ statement:
 ;
 statements:
   | statement EOL statements  { Ast.Statements ($1, $3) }
-  | statement                 { Ast.Statements ($1, Ast.EndOfStatements) }
+  | expr                      { Ast.LastStatement ($1) }
 ;
 pattern:
     id                      { Ast.IdPattern $1 }
