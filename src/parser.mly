@@ -7,7 +7,6 @@
 %token LBRACKET RBRACKET
 %token QUOTE
 %token EOL EOF
-%left LINESEP
 %start main
 %type <Ast.program_ast> main
 %%
@@ -19,8 +18,8 @@ statement:
   | def                     { Ast.DefStatement ($1) }
 ;
 statements:
-    statement                { Ast.Statements ($1, Ast.EndOfStatements) }
-  | statement EOL statements { Ast.Statements ($1, $3) }
+  | statement EOL statements  { Ast.Statements ($1, $3) }
+  | statement                 { Ast.Statements ($1, Ast.EndOfStatements) }
 ;
 pattern:
     id                      { Ast.IdPattern $1 }
@@ -41,6 +40,7 @@ expr:
   | STRING                  { Ast.StringLiteral $1 }
   | id                      { Ast.IdExpression $1 }
   | LPAREN lambda RPAREN    { Ast.LambdaExpression $2 }
+  | LBRACKET statements RBRACKET { Ast.StatementsExpression $2 }
 ;
 id:
   ID                        { Ast.Id $1 }

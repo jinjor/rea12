@@ -1,0 +1,712 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"state",
+				"statements"
+			],
+			[
+				"list",
+				"list2"
+			],
+			[
+				"f",
+				"false"
+			],
+			[
+				"e",
+				"e"
+			],
+			[
+				"a",
+				"a"
+			],
+			[
+				"compo",
+				"composeHalfAsync"
+			],
+			[
+				"compose",
+				"composeHalfCallBack"
+			],
+			[
+				"js",
+				"js_of_lambda"
+			],
+			[
+				"Lamb",
+				"lambda"
+			],
+			[
+				"LAMBDA",
+				"lambda"
+			],
+			[
+				"js_",
+				"js_of_pattern"
+			],
+			[
+				"string",
+				"string"
+			],
+			[
+				"ex",
+				"expr"
+			],
+			[
+				"lex",
+				"lexbuf"
+			],
+			[
+				"di",
+				"digit"
+			],
+			[
+				"digit",
+				"digit1"
+			],
+			[
+				"S",
+				"STRING"
+			],
+			[
+				"St",
+				"Stringast"
+			],
+			[
+				"String",
+				"STRING"
+			],
+			[
+				"outpu",
+				"output_str"
+			],
+			[
+				"file",
+				"file_name"
+			],
+			[
+				"output",
+				"output_str"
+			],
+			[
+				"s",
+				"s"
+			],
+			[
+				"print_",
+				"print_newline"
+			],
+			[
+				"Lex",
+				"Lexing"
+			],
+			[
+				"print",
+				"print_string"
+			],
+			[
+				"pin",
+				"print_string"
+			],
+			[
+				"fin",
+				"fin"
+			],
+			[
+				"fun",
+				"function"
+			],
+			[
+				"for",
+				"forEach"
+			],
+			[
+				"ope",
+				"operatorOrders"
+			],
+			[
+				"number",
+				"numberOrders"
+			],
+			[
+				"exp",
+				"expanded"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "src/lexer.mll",
+			"settings":
+			{
+				"buffer_size": 1299,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/parser.mly",
+			"settings":
+			{
+				"buffer_size": 1220,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/ast.ml",
+			"settings":
+			{
+				"buffer_size": 681,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/err.ml",
+			"settings":
+			{
+				"buffer_size": 445,
+				"line_ending": "Unix",
+				"name": "exception LexErr of string"
+			}
+		},
+		{
+			"file": "src/calc.ml",
+			"settings":
+			{
+				"buffer_size": 2404,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "build.sh",
+			"settings":
+			{
+				"buffer_size": 446,
+				"line_ending": "Unix",
+				"name": "ocamllex lexer.mll       # generates lexer.ml"
+			}
+		},
+		{
+			"file": ".gitignore",
+			"settings":
+			{
+				"buffer_size": 76,
+				"line_ending": "Unix",
+				"name": "sample/"
+			}
+		},
+		{
+			"file": "/Users/jinjor/Projects/js-test/test.js",
+			"settings":
+			{
+				"buffer_size": 629,
+				"line_ending": "Unix",
+				"name": "var End = {}"
+			}
+		},
+		{
+			"file": "sample/sample1.alt",
+			"settings":
+			{
+				"buffer_size": 51,
+				"line_ending": "Unix",
+				"name": "1+1"
+			}
+		},
+		{
+			"file": "rea12.sublime-project",
+			"settings":
+			{
+				"buffer_size": 433,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/Users/jinjor/Library/Application Support/Sublime Text 2/Packages/User/SublimeOnSaveBuild.sublime-settings",
+			"settings":
+			{
+				"buffer_size": 79,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "Rea12",
+	"command_palette":
+	{
+		"height": 52.0,
+		"selected_items":
+		[
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"ins",
+				"Package Control: Install Package"
+			],
+			[
+				"inst",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 449.0
+	},
+	"console":
+	{
+		"height": 125.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/Users/jinjor/Library/Application Support/Sublime Text 2/Packages/User/SublimeOnSaveBuild.sublime-settings",
+		"/Users/jinjor/Projects/js-test/test4.js",
+		"/Users/jinjor/Projects/js-test/test5.js",
+		"/Users/jinjor/Projects/js-test/test6.js",
+		"/Users/jinjor/Projects/ocaml_altjs_test/sample/sample1.js",
+		"/Users/jinjor/Projects/js-test/test2.js",
+		"/Users/jinjor/Projects/js-test/test3.js",
+		"/Users/jinjor/Projects/ocaml_altjs_test/tmp/lexer.ml",
+		"/Users/jinjor/Projects/ocaml_altjs_test/src/lexer.mll",
+		"/Users/jinjor/Projects/ocaml1/writer.ml",
+		"/Users/jinjor/Projects/ocaml1/parser.mly",
+		"/Users/jinjor/Projects/ocaml1/parser.mli",
+		"/Users/jinjor/Projects/ocaml1/calc.ml",
+		"/Users/jinjor/Projects/ocaml1/lexer.mll",
+		"/Users/jinjor/Projects/ocaml1/parser.ml",
+		"/Users/jinjor/Projects/ocaml1/cat.ml",
+		"/Users/jinjor/Projects/comiclist/index.html",
+		"/Users/jinjor/Projects/comiclist/server.js",
+		"/Users/jinjor/Projects/comiclist/.gitignore",
+		"/Users/jinjor/Projects/ocaml1/hoge.txt",
+		"/Users/jinjor/Projects/comiclist/numbers.js",
+		"/Users/jinjor/Projects/comiclist/numbers-rpn.js",
+		"/Users/jinjor/Projects/comiclist/package.json",
+		"/Users/jinjor/Projects/comiclist/app.js",
+		"/Users/jinjor/Projects/ocaml1/hello.ml",
+		"/Users/jinjor/Projects/ocaml1/echo.ml",
+		"/Users/jinjor/Projects/comiclist/numbers-rpn",
+		"/Users/jinjor/Projects/nodio2/src/app.ts",
+		"/Users/jinjor/Projects/nodio2/build.txt",
+		"/Users/jinjor/Projects/comiclist/gitignore",
+		"/Users/jinjor/Library/Application Support/Sublime Text 2/Packages/User/typescript.sublime-build",
+		"/Users/jinjor/Library/Application Support/Sublime Text 2/Packages/User/Preferences.sublime-settings",
+		"/Users/jinjor/Projects/nodio2/haxemine.json",
+		"/Users/jinjor/Projects/nodio2/d.ts/DefinitelyTyped/backbone/backbone.d.key",
+		"/Users/jinjor/Projects/nodio2/d.ts/DefinitelyTyped/backbone/backbone.d.ts",
+		"/Users/jinjor/Library/Application Support/Sublime Text 2/Packages/User/TypeScript Compiler.sublime-settings"
+	],
+	"find":
+	{
+		"height": 0.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"	\n",
+			"pattern",
+			"\"*\"\n",
+			")$\",\n",
+			".\n"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 9,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "src/lexer.mll",
+					"settings":
+					{
+						"buffer_size": 1299,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								624,
+								624
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/OCaml/OCamllex.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 325.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "src/parser.mly",
+					"settings":
+					{
+						"buffer_size": 1220,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								755,
+								755
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/OCaml/OCamlyacc.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 578.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "src/ast.ml",
+					"settings":
+					{
+						"buffer_size": 681,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								176,
+								176
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/OCaml/OCaml.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 76.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "src/err.ml",
+					"settings":
+					{
+						"buffer_size": 445,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								86,
+								86
+							]
+						],
+						"settings":
+						{
+							"auto_name": "exception LexErr of string",
+							"syntax": "Packages/OCaml/OCaml.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "src/calc.ml",
+					"settings":
+					{
+						"buffer_size": 2404,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								818,
+								818
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/OCaml/OCaml.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 445.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "build.sh",
+					"settings":
+					{
+						"buffer_size": 446,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								206,
+								206
+							]
+						],
+						"settings":
+						{
+							"auto_name": "ocamllex lexer.mll       # generates lexer.ml",
+							"syntax": "Packages/ShellScript/Shell-Unix-Generic.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": ".gitignore",
+					"settings":
+					{
+						"buffer_size": 76,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								47,
+								47
+							]
+						],
+						"settings":
+						{
+							"auto_name": "sample/",
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "/Users/jinjor/Projects/js-test/test.js",
+					"settings":
+					{
+						"buffer_size": 629,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								299,
+								299
+							]
+						],
+						"settings":
+						{
+							"auto_name": "var End = {}",
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 58.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "sample/sample1.alt",
+					"settings":
+					{
+						"buffer_size": 51,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								51,
+								51
+							]
+						],
+						"settings":
+						{
+							"auto_name": "1+1",
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 9,
+					"file": "rea12.sublime-project",
+					"settings":
+					{
+						"buffer_size": 433,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								20,
+								20
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JSON.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 10,
+					"file": "/Users/jinjor/Library/Application Support/Sublime Text 2/Packages/User/SublimeOnSaveBuild.sublime-settings",
+					"settings":
+					{
+						"buffer_size": 79,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								79,
+								79
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JSON.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 0.0
+	},
+	"input":
+	{
+		"height": 38.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 239.0
+	},
+	"replace":
+	{
+		"height": 0.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 200.0,
+	"status_bar_visible": true
+}

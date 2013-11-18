@@ -1,0 +1,26 @@
+{
+	"folders":
+	[
+		{
+			"path": "/Users/jinjor/Projects/ocaml_altjs_test",
+			"name": "ocaml_parser"
+		},
+		{
+			"path": "/Users/jinjor/Projects/js-test"
+		}
+	],
+	"build_systems":
+    [
+        {
+        	"osx": {
+        		"path": "/usr/local/bin:$PATH"
+        	},
+            "name": "Rea12",
+            "working_dir": "${project_path}",
+            "cmd": ["./build.sh"],
+            "shell": "bash",
+		    "file_regex": "\\.(mll|mll|ml)$"
+        }
+    ]
+
+}
