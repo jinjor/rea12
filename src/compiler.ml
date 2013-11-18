@@ -1,15 +1,8 @@
-let load_file f =
-  let ic = open_in f in
-  let n = in_channel_length ic in
-  let s = String.create n in
-  really_input ic s 0 n;
-  close_in ic;
-  (s)
+open FileUtil
 
 let log s =
   print_string s;
-  print_newline()
-
+  print_newline ()
 
 let indent i = String.make i '\t'
 
@@ -18,8 +11,6 @@ let rec js_of_statements ast i = match ast with
     | Ast.Statements (head, tail) ->
           (js_of_statement head i) ^ ";\n"
               ^ (js_of_statements tail i)
-
-
 
 and js_of_statement ast i = match ast with
       Ast.DefStatement (Ast.Def (pattern, lambda)) ->
@@ -63,13 +54,8 @@ let write_file file_name s : unit =
   | _ -> print_string ("error while writing file" ^ file_name);
   close_out out
 
-let _ =
+let exec input_file_name output_file_name =
   try
-    let dir = Sys.getcwd() in
-    let source_name = "sample1" in
-    let input_file_name = dir ^ "/sample/" ^ source_name ^ ".alt" in
-    let output_file_name = dir ^ "/sample/" ^ source_name ^ ".js" in
-
     let source = load_file input_file_name in
     log source;
     let lexbuf = Lexing.from_string source in
@@ -78,11 +64,8 @@ let _ =
     let output_str = js_of_statements result 0 in
     log output_str;
     write_file output_file_name output_str;
-    log "end!";
-    exit 0
+    log "end!"
   with e ->
     log (Printexc.to_string e);
-    log "error!";
-    exit 1
-
+    log "error!"
 
