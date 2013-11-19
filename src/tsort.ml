@@ -18,7 +18,7 @@ let rec visit (Node (a, parents)) visited l get_node =
 	    | Some n -> visit n visited l get_node
 	    | None -> raise (Module_not_found parent)
 	  in
-	  let (visited__, l_) = List.fold_left visit_each_parent (visited, l) parents in
+	  let (visited__, l_) = List.fold_left visit_each_parent (visited_, l) parents in
       (visited__, (a :: l_))
 	else (visited, l)
 
