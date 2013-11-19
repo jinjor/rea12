@@ -1,5 +1,12 @@
 open FileUtil
 
+let p = Console.print "Linker"
+
+
+
 let exec () =
-  print_string ("*** linker start ! ***\n");
-  print_string ("*** linker end ! ***\n")
+  p "*** linker start ! ***";
+
+
+
+  p "*** linker end ! ***"
