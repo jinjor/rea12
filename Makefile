@@ -15,6 +15,7 @@ all:
 	ocamlc -c -I tmp -w -26 tmp/lexer.ml
 	ocamlc -c -I tmp -w -26 tmp/parser.ml
 
+	ocamlc -c -I tmp -w -26 -warn-error P -o tmp/tsort src/tsort.ml
 	ocamlc -c -I tmp -w -26 -warn-error P -o tmp/fileUtil src/fileUtil.ml
 	ocamlc -c -I tmp -w -26 -warn-error P -o tmp/console src/console.ml
 	ocamlc -c -I tmp -w -26 -warn-error P -o tmp/compiler src/compiler.ml
@@ -22,7 +23,7 @@ all:
 	ocamlc -c -I tmp -w -26 -warn-error P -o tmp/build src/build.ml
 
 	#ocamlc -o bin/compiler tmp/lexer.cmo tmp/parser.cmo tmp/compiler.cmo
-	ocamlc -o bin/build tmp/fileUtil.cmo tmp/console.cmo tmp/lexer.cmo tmp/parser.cmo tmp/compiler.cmo tmp/linker.cmo tmp/build.cmo
+	ocamlc -o bin/build tmp/tsort.cmo tmp/fileUtil.cmo tmp/console.cmo tmp/lexer.cmo tmp/parser.cmo tmp/compiler.cmo tmp/linker.cmo tmp/build.cmo
 
 	ocamlc -pp "camlp5o pr_o.cmo" -I +camlp5 -c -o tmp/p5test src/p5test.ml
 	ocamlc -o bin/p5test tmp/p5test.cmo
