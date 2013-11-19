@@ -1,7 +1,6 @@
-
 type 'a node = Node of 'a * ('a list)
 
-exception Module_not_found of string
+exception Node_not_found of string
 
 let not_visited visited name =
   try
@@ -16,7 +15,7 @@ let rec visit (Node (a, parents)) visited l get_node =
     let visit_each_parent = fun (visited, l) -> fun parent ->
       match get_node parent with
       | Some n -> visit n visited l get_node
-      | None -> raise (Module_not_found parent)
+      | None -> raise (Node_not_found parent)
     in
     let (visited__, l_) = List.fold_left visit_each_parent (visited_, l) parents in
     (visited__, (a :: l_))

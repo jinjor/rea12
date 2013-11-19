@@ -1,4 +1,4 @@
-open FileUtil
+open File_util
 
 let p = Console.print "Renkon"
 let print_help () =

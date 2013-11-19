@@ -1,4 +1,4 @@
-open FileUtil
+open File_util
 
 let p = Console.print "Compiler"
 let indent i = String.make i '\t'
