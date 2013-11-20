@@ -25,11 +25,12 @@ let loan_out file_name f =
   let out = open_out file_name in
   try
     f out;
+    flush out;
+    close_out out
   with
   | e ->
     close_out out;
     raise e
-  close_out out
 
 let write_file file_name s : unit =
   loan_out file_name (fun out -> output_string out s)
