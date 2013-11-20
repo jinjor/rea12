@@ -8,6 +8,8 @@ let sample = [
   Tsort.Node ("b", [])
 ]
 
+let exec all_in_one sorted_file_names = ()
+
 let exec () =
   p "*** linker start ! ***";
   let sorted = Tsort.exec sample in
