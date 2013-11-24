@@ -53,8 +53,6 @@ var Async = {
     };
   }
 }
-
-
 var join = function(list1, list2){
   if(list1 === Nil){
     return list2;
@@ -80,62 +78,7 @@ var map = function(list, f){
   tail = list[1];
   return [f(head), map(tail, f)];
 };
-/*
-d = {
-  a = 1;
-  b <- [2, 3]
-  //d <-[1, 2];
-  c <- [b * 10, b * 100]
-  a + b + c
-}
-e = reduce d add 0
-e2 <- e
-console.log(e)
-*/
-
 var add = function(memo, e){ return memo + e; };
-
-Async.bind(Async.unit(), function(){
-  var d = Async.bind(Async.unit(), function(){
-    var a = 1;
-    return Async.bind(function(cb){
-      cb(2);
-      setTimeout(function(){
-        cb(3);
-        setTimeout(function(){
-          cb(End);
-        });
-      }, 1000);
-    }, function(b) {
-      var d = 1;
-      //return flatMapAsync(c, function(c) { return unitAsync([a, b, c]) });
-      return Async.bind(function(cb){
-        cb(b * 10);
-        setTimeout(function(){
-          cb(b * 100);
-          setTimeout(function(){
-            cb(End);
-          });
-        }, 100);
-      }, function(c) {
-        return Async.unit(a + b + c + d);
-      });
-    })
-  });
-  var e = Async.reduce(d, add, 0);
-  return Async.bind(e, function(e2) {
-    console.log(e2);
-    return Async.unit();
-  });
-})(function(){});
-
-
-console.log(join([1,Nil],[1,Nil]));
-console.log(concat([Nil, Nil]));
-console.log(concat([[1, Nil], Nil]));
-console.log(concat([[1, Nil], [[2, Nil], Nil]]));
-
-
 return Async.unit((function(){
   var a=1;
   return Async.bind(bs,function(b){

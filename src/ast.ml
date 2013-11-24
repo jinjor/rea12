@@ -20,7 +20,7 @@ and lambda_ast =
   | EndOfLambda of function_ast
 
 and def_ast =
-    Def of pattern_ast * lambda_ast
+    Def of pattern_ast * function_ast
 
 and expand_ast =
   | Expand of pattern_ast * function_ast

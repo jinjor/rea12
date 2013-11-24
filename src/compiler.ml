@@ -9,13 +9,18 @@ let rec js_of_statements ast i = match ast with
           (js_of_statement head tail i)
 
 and js_of_statement ast rest i = match ast with
-      Ast.DefStatement (Ast.Def (pattern, lambda)) ->
-        (indent i) ^ "var " ^ (js_of_pattern pattern) ^ "=" ^ (js_of_lambda lambda i) ^ ";\n" ^
+      Ast.DefStatement (Ast.Def (pattern, func)) ->
+        let defs = defs_of_pattern_def pattern func i in
+        String.concat "" defs ^
         (js_of_statements rest i)
     | Ast.ExpandStatement (Ast.Expand (pattern, func)) ->
-        (indent i) ^ "return Async.bind(" ^ js_of_function func i ^ ",function(" ^ (js_of_pattern pattern) ^ "){\n" ^
-          (js_of_statements rest (i + 1)) ^ "\n" ^
-          (indent i) ^ "});\n"
+      let (args, defs) = str_of_pattern_lambda pattern i in
+      let arg2 = "function(" ^ String.concat "," args ^ "){\n" ^
+        String.concat "" defs ^
+        (js_of_statements rest (i + 1)) ^ "\n" ^
+        (indent i) ^ "}"
+      in
+      (indent i) ^ "return Async.bind(" ^ js_of_function func i ^ "," ^ arg2 ^ ");\n"
     | Ast.FuncStatement (Ast.EndOfFunction) -> "" ^
         (js_of_statements rest i)
     | Ast.FuncStatement (func) -> (indent i) ^ js_of_function func i ^
@@ -23,14 +28,20 @@ and js_of_statement ast rest i = match ast with
     | Ast.EmptyStatement -> "" ^
         (js_of_statements rest i)
 
-and js_of_pattern ast = match ast with
-      Ast.IdPattern (Ast.Id id) -> id
+and defs_of_pattern_def pattern func i = match pattern with
+      Ast.IdPattern (Ast.Id id) -> [(indent i) ^ "var " ^ id ^ "=" ^ (js_of_function func i) ^ ";\n"]
+
+and str_of_pattern_lambda pattern i = match pattern with
+      Ast.IdPattern (Ast.Id id) -> ([id], [])
 
 and js_of_lambda ast i = match ast with
       Ast.Lambda (pattern, lambda) ->
-        "function(" ^ (js_of_pattern pattern) ^ "){\n"
-        ^ (indent (i + 1)) ^ "return " ^ (js_of_lambda lambda i) ^ ";\n"
-        ^ (indent i) ^ "}"
+        let (args, defs) = str_of_pattern_lambda pattern i in
+        let def_statements = List.map (fun s -> (indent (i + 1)) ^ s ^ "\n") defs in
+        "function(" ^ String.concat "," args ^ "){\n" ^
+        String.concat "" def_statements ^
+        (indent (i + 1)) ^ "return " ^ (js_of_lambda lambda i) ^ ";\n" ^
+        (indent i) ^ "}"
     | Ast.EndOfLambda func -> js_of_function func i
 
 and js_of_function ast i = match ast with
@@ -48,6 +59,7 @@ and js_of_expr ast i = match ast with
       | Ast.LambdaExpression lambda -> js_of_lambda lambda i
       | Ast.StatementsExpression statements ->
         "(function(){\n" ^ (js_of_statements statements (i + 1))^ "\n})"
+
 
 exception Unknown
 

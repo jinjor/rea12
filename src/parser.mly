@@ -32,7 +32,7 @@ lambda:
   | pattern RARROW lambda   { Ast.Lambda ($1, $3) }
 ;
 def:
-    pattern EQ lambda       { Ast.Def ($1, $3) }
+    pattern EQ func         { Ast.Def ($1, $3) }
 ;
 expand:
     pattern LARROW func     { Ast.Expand ($1, $3) }
