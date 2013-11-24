@@ -45,7 +45,7 @@ expr:
   | STRING                  { Ast.StringLiteral $1 }
   | id                      { Ast.IdExpression $1 }
   | LPAREN lambda RPAREN    { Ast.LambdaExpression $2 }
-  | LBRACKET statements RBRACKET { Ast.StatementsExpression $2 }
+  | LBRACKET statements RBRACKET { Ast.BlockExpression $2 }
 ;
 id:
   ID                        { Ast.Id $1 }

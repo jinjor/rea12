@@ -3,7 +3,7 @@ type expression_ast =
   | IntLiteral of int
   | LambdaExpression of lambda_ast
   | IdExpression of id_ast
-  | StatementsExpression of statements_ast
+  | BlockExpression of statements_ast
 
 and function_ast =
     Function of expression_ast * function_ast
@@ -14,6 +14,9 @@ and id_ast =
 
 and pattern_ast =
     IdPattern of id_ast
+
+and block_ast =
+  | Block of statements_ast
 
 and lambda_ast =
     Lambda of pattern_ast * lambda_ast
