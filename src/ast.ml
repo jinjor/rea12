@@ -22,13 +22,17 @@ and lambda_ast =
 and def_ast =
     Def of pattern_ast * lambda_ast
 
+and expand_ast =
+  | Expand of pattern_ast * function_ast
+
 and statement_ast =
     FuncStatement of function_ast
   | DefStatement of def_ast
+  | ExpandStatement of expand_ast
   | EmptyStatement
 
 and statements_ast =
     Statements of statement_ast * statements_ast
-  | LastStatement of expression_ast
+  | LastStatement of function_ast
 
 and program_ast = statements_ast

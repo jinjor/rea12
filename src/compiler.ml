@@ -1,20 +1,27 @@
 open File_util
 
 let p = Console.print "Compiler"
-let indent i = String.make i '\t'
+let indent i = String.make (i * 2) ' '
 
 let rec js_of_statements ast i = match ast with
-      Ast.LastStatement expr -> (indent i) ^ "return " ^ js_of_expr expr i ^ ";"
+      Ast.LastStatement func -> (indent i) ^ "return Async.unit(" ^ (js_of_function func i) ^ ");"
     | Ast.Statements (head, tail) ->
-          (js_of_statement head i) ^ ";\n"
-              ^ (js_of_statements tail i)
+          (js_of_statement head tail i)
 
-and js_of_statement ast i = match ast with
+and js_of_statement ast rest i = match ast with
       Ast.DefStatement (Ast.Def (pattern, lambda)) ->
-        (indent i) ^ (js_of_pattern pattern) ^ "=" ^ (js_of_lambda lambda i)
-    | Ast.FuncStatement (Ast.EndOfFunction) -> ""
-    | Ast.FuncStatement (func) -> (indent i) ^ js_of_function func i
-    | Ast.EmptyStatement -> ""
+        (indent i) ^ "var " ^ (js_of_pattern pattern) ^ "=" ^ (js_of_lambda lambda i) ^ ";\n" ^
+        (js_of_statements rest i)
+    | Ast.ExpandStatement (Ast.Expand (pattern, func)) ->
+        (indent i) ^ "return Async.bind(" ^ js_of_function func i ^ ",function(" ^ (js_of_pattern pattern) ^ "){\n" ^
+          (js_of_statements rest (i + 1)) ^ "\n" ^
+          (indent i) ^ "});\n"
+    | Ast.FuncStatement (Ast.EndOfFunction) -> "" ^
+        (js_of_statements rest i)
+    | Ast.FuncStatement (func) -> (indent i) ^ js_of_function func i ^
+        (js_of_statements rest i)
+    | Ast.EmptyStatement -> "" ^
+        (js_of_statements rest i)
 
 and js_of_pattern ast = match ast with
       Ast.IdPattern (Ast.Id id) -> id

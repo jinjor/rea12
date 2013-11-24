@@ -2,7 +2,7 @@
 %token <string> STRING
 %token <string> ID
 %token EQ
-%token RARROW
+%token LARROW RARROW
 %token LPAREN RPAREN
 %token LBRACKET RBRACKET
 %token QUOTE
@@ -18,10 +18,11 @@ main:
 statement:
     func                    { Ast.FuncStatement ($1) }
   | def                     { Ast.DefStatement ($1) }
+  | expand                  { Ast.ExpandStatement ($1) }
 ;
 statements:
   | statement EOL statements  { Ast.Statements ($1, $3) }
-  | expr                      { Ast.LastStatement ($1) }
+  | func                      { Ast.LastStatement ($1) }
 ;
 pattern:
     id                      { Ast.IdPattern $1 }
@@ -32,6 +33,9 @@ lambda:
 ;
 def:
     pattern EQ lambda       { Ast.Def ($1, $3) }
+;
+expand:
+    pattern LARROW func     { Ast.Expand ($1, $3) }
 ;
 func:
     expr                    { Ast.Function ($1, Ast.EndOfFunction) }

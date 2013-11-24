@@ -1,12 +1,11 @@
-return (function(){
-	'ahoge1'(3)(4);
-	a=function(a){
-		return 23;
-	};
-	b=function(b){
-		return a(1);
-	}(function(a){
-		return 345;
-	});
-	return 2;
-});
+return Async.unit((function(){
+  var a=1;
+  return Async.bind(bs,function(b){
+    var d=2;
+    return Async.bind(cs,function(c){
+      return Async.unit(a(b)(c));
+    });
+
+  });
+
+}));

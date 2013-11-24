@@ -23,6 +23,7 @@ rule token = parse
   | ['\n']         { EOL }
   | (digit1 digit*) as lxm { INT(int_of_string lxm) }
   | "->"           { RARROW }
+  | "<-"           { LARROW }
   | "="            { EQ }
   | '('            { LPAREN }
   | ')'            { RPAREN }
