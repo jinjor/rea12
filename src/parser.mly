@@ -8,12 +8,11 @@
 %token QUOTE
 %token EOL EOF
 %start main
-%type <Ast.program_ast> main
+%type <Ast.module_ast> main
 %%
 
-
 main:
-    statements EOF          { $1 }
+    statements EOF          { Ast.Module $1 }
 ;
 statement:
     func                    { Ast.FuncStatement ($1) }

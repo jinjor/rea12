@@ -35,4 +35,5 @@ and statements_ast =
     Statements of statement_ast * statements_ast
   | LastStatement of function_ast
 
-and program_ast = statements_ast
+and module_ast =
+  | Module of statements_ast

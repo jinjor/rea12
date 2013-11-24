@@ -3,8 +3,13 @@ open File_util
 let p = Console.print "Compiler"
 let indent i = String.make (i * 2) ' '
 
-let rec js_of_statements ast i = match ast with
-      Ast.LastStatement func -> (indent i) ^ "return Async.unit(" ^ (js_of_function func i) ^ ");"
+let rec js_of_module ast = match ast with
+      Ast.Module statements -> "Async.bind(Async.unit(), function(){\n" ^
+        (js_of_statements statements 1) ^
+        "})(function(){});\n"
+
+and js_of_statements ast i = match ast with
+      Ast.LastStatement func -> (indent i) ^ "return Async.unit(" ^ (js_of_function func i) ^ ");\n"
     | Ast.Statements (head, tail) ->
           (js_of_statement head tail i)
 
@@ -40,7 +45,7 @@ and js_of_lambda ast i = match ast with
         let def_statements = List.map (fun s -> (indent (i + 1)) ^ s ^ "\n") defs in
         "function(" ^ String.concat "," args ^ "){\n" ^
         String.concat "" def_statements ^
-        (indent (i + 1)) ^ "return " ^ (js_of_lambda lambda i) ^ ";\n" ^
+        (indent (i + 1)) ^ "return " ^ (js_of_lambda lambda (i+1)) ^ ";\n" ^
         (indent i) ^ "}"
     | Ast.EndOfLambda func -> js_of_function func i
 
@@ -58,7 +63,8 @@ and js_of_expr ast i = match ast with
       | Ast.IdExpression (Ast.Id id) -> id
       | Ast.LambdaExpression lambda -> js_of_lambda lambda i
       | Ast.StatementsExpression statements ->
-        "(function(){\n" ^ (js_of_statements statements (i + 1))^ "\n})"
+        "(function(){\n" ^ (js_of_statements statements (i + 1))^ "\n" ^
+          (indent i) ^ "})"
 
 
 exception Unknown
@@ -70,7 +76,7 @@ let exec input_file_name output_file_name =
     let lexbuf = Lexing.from_string source in
     p "start!";
     let result = Parser.main Lexer.token lexbuf in
-    let output_str = js_of_statements result 0 in
+    let output_str = js_of_module result in
     p output_str;
     write_file output_file_name output_str;
     p "end!"
