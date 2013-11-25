@@ -18,7 +18,7 @@ let rec js_of_module ast = match ast with
           (indent 1) ^ (js_of_statements statements 1) ^
           "}"
         in
-        "Async.bind(Async.unit()," ^ func_str ^ ")(function(){});\n"
+        "Async.bind(Async.unit()," ^ func_str ^ ")(function(e){console.log(e);});\n"
 
 and js_of_statements ast i = match ast with
       Ast.LastStatement func -> "return Async.unit(" ^ (js_of_function func i) ^ ");\n"
@@ -87,9 +87,9 @@ and js_of_block ast i = match ast with
     | Ast.LastStatement func ->
       (indent i) ^ "Async.unit(" ^ (js_of_function func i) ^ ")"
     | statements ->
-      let apply_func = Js_lambda ([], [], Return_statements statements) in
-      let apply_func_str = js_of_lambda_ apply_func (i + 1) in
-      "Async.bind(Async.unit(),(" ^ apply_func_str ^ ")())"
+      let f = Js_lambda ([], [], Return_statements statements) in
+      let f_str = js_of_lambda_ f (i + 1) in
+      "Async.bind(Async.unit()," ^ f_str ^ ")"
 
 exception Unknown
 

@@ -79,14 +79,45 @@ var map = function(list, f){
   return [f(head), map(tail, f)];
 };
 var add = function(memo, e){ return memo + e; };
+
+var as = function(cb){
+  var i = 0;
+  setInterval(function(){
+    i++;
+    cb(i);
+  }, 1000);
+};
+var bs = function(cb){
+  cb(2);
+  setTimeout(function(){
+    cb(3);
+    setTimeout(function(){
+      cb(End);
+    });
+  }, 40);
+};
+var cs = function(b){
+  return function(cb){
+    cb(b + 10);
+    setTimeout(function(){
+      cb(b + 100);
+      setTimeout(function(){
+        cb(End);
+      });
+    }, 100);
+  };
+};
 Async.bind(Async.unit(),function(){
-  return Async.unit(Async.bind(Async.unit(),(function(){
-      var a=1;
-      return Async.bind(bs,function(b){
-        var d=2;
-        return Async.bind(cs,function(c){
-          return Async.unit(a(b)(c));
+    return Async.bind(Async.bind(Async.unit(),function(){
+            return Async.bind(as,function(a){
+                return Async.bind(bs,function(b){
+          var d=2;
+          return Async.bind(cs(b),function(c){
+            return Async.unit(eval('a+b+c+d'));
+          });
         });
       });
-    })()));
-})(function(){});
+    }),function(r){
+    return Async.unit(r);
+  });
+})(function(e){console.log(e);});

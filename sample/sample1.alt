@@ -1,5 +1,6 @@
-{a = 1
+r <- {a <- as
 b <- bs
 d = 2
-c <- cs
-a b c}
+c <- cs b
+eval "a+b+c+d"}
+r
