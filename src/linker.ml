@@ -24,6 +24,6 @@ let exec () =
   List.iter p sorted;
   let dir = Sys.getcwd () in
   let out_file_name = dir ^ "/sample/all.js" in
-  let in_names = [dir ^ "/bin/predef.js"; dir ^ "/sample/sample1.js"] in
+  let in_names = [dir ^ "/bin/predef.js"; dir ^ "/sample/sample2.js"] in
   all_in_one out_file_name in_names;
   p "*** linker end ! ***"

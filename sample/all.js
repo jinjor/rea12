@@ -79,7 +79,22 @@ var map = function(list, f){
   return [f(head), map(tail, f)];
 };
 var add = function(memo, e){ return memo + e; };
-
+var ajaxmock1 = function(){
+  return function(cb){
+    setTimeout(function(){
+      cb("mado");
+      cb(End);
+    },1000);
+  };
+}
+var ajaxmock2 = function(a){
+  return function(cb){
+    setTimeout(function(){
+      cb(a + "homu");
+      cb(End);
+    },1000);
+  }
+}
 var as = function(cb){
   var i = 0;
   setInterval(function(){
@@ -109,12 +124,9 @@ var cs = function(b){
 };
 Async.bind(Async.unit(),function(){
     return Async.bind(Async.bind(Async.unit(),function(){
-            return Async.bind(as,function(a){
-                return Async.bind(bs,function(b){
-          var d=2;
-          return Async.bind(cs(b),function(c){
-            return Async.unit(eval('a+b+c+d'));
-          });
+            return Async.bind(ajaxmock1(''),function(a){
+                return Async.bind(ajaxmock2(a),function(b){
+          return Async.unit(b);
         });
       });
     }),function(r){

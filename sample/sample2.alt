@@ -1,0 +1,4 @@
+r <- {a <- ajaxmock1 ""
+b <- ajaxmock2 a
+b}
+r

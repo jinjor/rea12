@@ -25,7 +25,8 @@ all:
 	#ocamlc -o bin/compiler tmp/lexer.cmo tmp/parser.cmo tmp/compiler.cmo
 	ocamlc -o bin/build tmp/tsort.cmo tmp/file_util.cmo tmp/console.cmo tmp/lexer.cmo tmp/parser.cmo tmp/compiler.cmo tmp/linker.cmo tmp/build.cmo
 
-	ocamlc -pp "camlp5o pr_o.cmo" -I +camlp5 -c -o tmp/p5test src/p5test.ml
+	ocamlc -pp "camlp5r pa_lexer.cmo" -o tmp/p5lextest src/p5lextest.ml
+	ocamlc -pp "camlp5r pa_rp.cmo" -o tmp/p5test src/p5test.ml
 	ocamlc -o bin/p5test tmp/p5test.cmo
 
 
