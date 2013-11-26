@@ -1,5 +1,5 @@
 Async.bind(Async.unit(),function(){
-    return Async.bind(Async.bind(Async.unit(),function(){
+    return Async.bind((function(){
             return Async.bind(as,function(a){
                 return Async.bind(bs,function(b){
           var d=2;
@@ -8,7 +8,7 @@ Async.bind(Async.unit(),function(){
           });
         });
       });
-    }),function(r){
+    })(),function(r){
     return Async.unit(r);
   });
 })(function(e){console.log(e);});

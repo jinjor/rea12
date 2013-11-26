@@ -89,7 +89,7 @@ and js_of_block ast i = match ast with
     | statements ->
       let f = Js_lambda ([], [], Return_statements statements) in
       let f_str = js_of_lambda_ f (i + 1) in
-      "Async.bind(Async.unit()," ^ f_str ^ ")"
+      "(" ^ f_str ^ ")()"
 
 exception Unknown
 
